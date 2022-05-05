@@ -26,4 +26,49 @@ local function bubble_sort(array)
   return counter
 end
 
-return bubble_sort
+-- ---------------------------------------------------------------------
+
+local function ascending(size)
+  local array = {}
+
+  for i = 1, size, 1 do
+    table.insert(array, i)
+  end
+
+  return array
+end
+
+local function descending(size)
+  local array = {}
+
+  for i = size, 1, -1 do
+    table.insert(array, i)
+  end
+
+  return array
+end
+
+local function mixed(size)
+  local midpoint = size / 2
+
+  local array = {}
+
+  for i = 1, midpoint, 1 do
+    table.insert(array, i)
+  end
+
+  for i = size, midpoint, -1 do
+    table.insert(array, i)
+  end
+
+  return array
+end
+
+-- ---------------------------------------------------------------------
+
+return {
+  algorithm = bubble_sort,
+  average = mixed,
+  best = ascending,
+  worst = descending
+}
