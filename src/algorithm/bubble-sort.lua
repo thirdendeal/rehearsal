@@ -1,13 +1,17 @@
 -- Bubble Sort
 -- ---------------------------------------------------------------------
 
--- Worst-case scenario comparison and swap count:
+-- Bubble Sort: a loop of passthroughs
+
+-- Passthrough: a loop of adjacent pairs of unsorted values, where:
 --
--- (n - 1 + n - 2 + ... + 1)(1 + 1)
--- = [T(n) - n] 2
--- = {[(n ^ 2 + n) / 2] - n} 2
--- = n ^ 2 + n - 2n
--- = n ^ 2 - n
+-- 1. The left value is compared to the right value
+-- 2. If the former is greater than the later, they swap positions
+--
+-- With every passthrough:
+--
+-- 1. Greater values bubble up to the right
+-- 2. The greatest unsorted value bubbles up to its correct position
 
 local function bubble_sort(array)
   local profile = {
@@ -40,6 +44,12 @@ end
 
 -- ---------------------------------------------------------------------
 
+-- Best-case scenario
+--
+-- A comparison for each pair in the first passthrough
+--
+-- n - 1
+
 local function ascending(size)
   local array = {}
 
@@ -50,6 +60,17 @@ local function ascending(size)
   return array
 end
 
+-- Worst-case scenario
+--
+-- A comparison and a swap for each pair in every passthrough
+--
+-- 2 . (n - 1 + n - 2 + ... + 1)
+-- 2 . [T(n) - n]
+-- 2 . {[(n ^ 2 + n) / 2] - n}
+-- (n ^ 2 + n) - 2n
+--
+-- n ^ 2 - n
+
 local function descending(size)
   local array = {}
 
@@ -59,6 +80,10 @@ local function descending(size)
 
   return array
 end
+
+-- Average-case scenario
+--
+-- About half the operations of the worst-case due to early exiting
 
 local function mixed(size)
   local midpoint = size / 2
