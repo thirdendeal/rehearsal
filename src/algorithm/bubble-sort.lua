@@ -44,23 +44,15 @@ end
 
 -- ---------------------------------------------------------------------
 
--- Best-case scenario
+-- Best-case scenario: Ascending Order
 --
 -- A comparison for each pair in the first passthrough
 --
 -- n - 1
 
-local function ascending(size)
-  local array = {}
+-- ---------------------------------------------------------------------
 
-  for i = 1, size do
-    table.insert(array, i)
-  end
-
-  return array
-end
-
--- Worst-case scenario
+-- Worst-case scenario: Descending Order
 --
 -- A comparison and a swap for each pair in every passthrough
 --
@@ -71,41 +63,20 @@ end
 --
 -- n ^ 2 - n
 
-local function descending(size)
-  local array = {}
+-- ---------------------------------------------------------------------
 
-  for i = size, 1, -1 do
-    table.insert(array, i)
-  end
-
-  return array
-end
-
--- Average-case scenario
+-- Average-case scenario: Mixed Order
 --
--- About half the operations of the worst-case due to early exiting
-
-local function mixed(size)
-  local midpoint = size / 2
-
-  local array = {}
-
-  for i = 1, midpoint do
-    table.insert(array, i)
-  end
-
-  for i = size, midpoint + 0.5, -1 do
-    table.insert(array, i)
-  end
-
-  return array
-end
+-- Half the operations of the worst-case due to early exiting
 
 -- ---------------------------------------------------------------------
 
 return {
   algorithm = bubble_sort,
-  average = mixed,
-  best = ascending,
-  worst = descending
+  --
+  input = "array",
+  --
+  best = "ascending",
+  worst = "descending",
+  average = "mixed"
 }

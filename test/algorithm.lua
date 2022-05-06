@@ -4,11 +4,12 @@
 -- Usage: lua ./test/algorithm.lua <name> [scenario = worst] [size = 10]
 
 local package = require("src/algorithm/" .. arg[1])
+local mock = require("test/mock/" .. package.input)
 
 local scenario = arg[2] or "worst"
 local size = arg[3] or 10
 
-local input = package[scenario](size)
+local input = mock[package[scenario]](size)
 local profile = package.algorithm(input)
 
 -- ---------------------------------------------------------------------
