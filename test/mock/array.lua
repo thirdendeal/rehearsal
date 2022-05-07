@@ -76,6 +76,18 @@ local function mixed(size)
   return array
 end
 
+local function pseudo_random(size)
+  math.randomseed(os.time())
+
+  local array = {}
+
+  for _ = 1, size do
+    table.insert(array, math.random(1, size))
+  end
+
+  return array
+end
+
 -- ---------------------------------------------------------------------
 
 return {
@@ -83,5 +95,6 @@ return {
   cosine_boost = cosine_boost,
   cosine_damp = cosine_damp,
   descending = descending,
-  mixed = mixed
+  mixed = mixed,
+  pseudo_random = pseudo_random
 }
