@@ -39,20 +39,6 @@ end
 
 -- ---------------------------------------------------------------------
 
--- Best-case scenario: Ascending Order
---
--- A comparison for each value in a passthrough, as in the worst-case
---
--- (n - 1 + n - 2 + ... + 1)
--- T(n) - n
--- [(n ^ 2 + n) / 2] - n
--- [(n ^ 2 + n) / 2] - (2n / 2)
--- (n ^ 2 + n - 2n) / 2
---
--- (n ^ 2 - n) / 2
-
--- ---------------------------------------------------------------------
-
 -- Worst-case scenario: Descending Order
 --
 -- A comparison for each value in a passthrough
@@ -69,10 +55,28 @@ end
 
 -- ---------------------------------------------------------------------
 
--- Average-case scenario: Mixed Order
+-- Average-case scenario: Pseudo Random Order
 --
 -- A comparison for each value in a passthrough, as in the worst-case
--- Half the swaps of the worst-case (+- 1)
+-- About a swap per passthrough
+
+-- Due to the number of swaps:
+--
+-- The average array takes more steps than a descending order array
+
+-- ---------------------------------------------------------------------
+
+-- Best-case scenario: Ascending Order
+--
+-- A comparison for each value in a passthrough, as in the worst-case
+--
+-- (n - 1 + n - 2 + ... + 1)
+-- T(n) - n
+-- [(n ^ 2 + n) / 2] - n
+-- [(n ^ 2 + n) / 2] - (2n / 2)
+-- (n ^ 2 + n - 2n) / 2
+--
+-- (n ^ 2 - n) / 2
 
 -- ---------------------------------------------------------------------
 
@@ -81,7 +85,7 @@ return {
   --
   input = "array",
   --
-  best = "ascending",
   worst = "descending",
-  average = "mixed"
+  average = "pseudo_random",
+  best = "ascending"
 }

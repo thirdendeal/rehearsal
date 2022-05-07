@@ -44,14 +44,6 @@ end
 
 -- ---------------------------------------------------------------------
 
--- Best-case scenario: Ascending Order
---
--- A comparison for each pair in the first passthrough
---
--- n - 1
-
--- ---------------------------------------------------------------------
-
 -- Worst-case scenario: Descending Order
 --
 -- A comparison and a swap for each pair in every passthrough
@@ -65,9 +57,17 @@ end
 
 -- ---------------------------------------------------------------------
 
--- Average-case scenario: Mixed Order
+-- Average-case scenario: Pseudo Random Order
 --
--- Half the operations of the worst-case due to early exiting
+-- About three quarters of the operations of the worst-case
+
+-- ---------------------------------------------------------------------
+
+-- Best-case scenario: Ascending Order
+--
+-- A comparison for each pair in the first passthrough
+--
+-- n - 1
 
 -- ---------------------------------------------------------------------
 
@@ -76,7 +76,7 @@ return {
   --
   input = "array",
   --
-  best = "ascending",
   worst = "descending",
-  average = "mixed"
+  average = "pseudo_random",
+  best = "ascending"
 }
