@@ -19,6 +19,8 @@ local function bubble_sort(array)
     swap = 0
   }
 
+  local snapshot = {{unpack(array)}}
+
   for i = 1, #array - 1 do -- Iteration
     local sorted = true
 
@@ -29,6 +31,8 @@ local function bubble_sort(array)
         sorted = false
 
         profile.swap = profile.swap + 1
+
+        table.insert(snapshot, {unpack(array)})
       end
 
       profile.comparison = profile.comparison + 1
@@ -39,7 +43,7 @@ local function bubble_sort(array)
     end
   end
 
-  return profile
+  return profile, snapshot
 end
 
 -- ---------------------------------------------------------------------

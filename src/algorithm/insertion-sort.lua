@@ -24,6 +24,8 @@ local function insertion_sort(array)
     swap = 0
   }
 
+  local snapshot = {{unpack(array)}}
+
   for i = 2, #array do -- Iteration
     local reference = array[i]
 
@@ -34,13 +36,15 @@ local function insertion_sort(array)
         profile.swap = profile.swap + 1
 
         array[j], array[j + 1] = array[j + 1], array[j] -- Swap operation
+
+        table.insert(snapshot, {unpack(array)})
       else
         break
       end
     end
   end
 
-  return profile
+  return profile, snapshot
 end
 
 -- ---------------------------------------------------------------------

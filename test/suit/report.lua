@@ -4,6 +4,20 @@
 -- Private
 -- ---------------------------------------------------------------------
 
+local function print_array(array)
+  io.write("{")
+
+  for i = 1, #array do
+    io.write(array[i])
+
+    if i ~= #array then
+      io.write(", ")
+    end
+  end
+
+  io.write("}\n")
+end
+
 local function printf(...)
   io.write(string.format(...))
 end
@@ -26,7 +40,15 @@ end
 -- Public
 -- ---------------------------------------------------------------------
 
-local function report(profile)
+local function report(steps, profile, snapshot)
+  if steps > 0 and #snapshot > 1 then
+    for i = 1, math.min(steps, #snapshot) do
+      print_array(snapshot[i])
+    end
+
+    print()
+  end
+
   local length, sum = tally(profile)
 
   local format = "%-" .. length .. "s\t%i\n"

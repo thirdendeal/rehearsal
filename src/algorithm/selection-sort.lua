@@ -16,6 +16,8 @@ local function selection_sort(array)
     swap = 0
   }
 
+  local snapshot = {{unpack(array)}}
+
   for i = 1, #array - 1 do -- Iteration
     local lowest = i
 
@@ -31,10 +33,11 @@ local function selection_sort(array)
       array[i], array[lowest] = array[lowest], array[i] -- Swap operation
 
       profile.swap = profile.swap + 1
+      table.insert(snapshot, {unpack(array)})
     end
   end
 
-  return profile
+  return profile, snapshot
 end
 
 -- ---------------------------------------------------------------------
