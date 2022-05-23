@@ -5,17 +5,14 @@ local Node = require("src/data-structure/node")
 
 -- ---------------------------------------------------------------------
 
-local module = {}
-
 local LinkedList = {}
-local LinkedListMetatable = {
-  __index = LinkedList
-}
+
+LinkedList.__index = LinkedList
 
 -- ---------------------------------------------------------------------
 
-function module.new()
-  return setmetatable({}, LinkedListMetatable)
+function LinkedList:new()
+  return setmetatable({}, self)
 end
 
 -- ---------------------------------------------------------------------
@@ -36,12 +33,12 @@ end
 
 function LinkedList:insert_at(index, value)
   if index == 1 then
-    self.head = Node.new(value, self.head)
+    self.head = Node:new(value, self.head)
   else
     local previous = self:read(index - 1)
 
     if previous then
-      previous.link = Node.new(value, previous.link)
+      previous.link = Node:new(value, previous.link)
     end
   end
 end
@@ -86,4 +83,4 @@ end
 
 -- ---------------------------------------------------------------------
 
-return module
+return LinkedList

@@ -1,24 +1,21 @@
 -- Node
 -- ---------------------------------------------------------------------
 
-local module = {}
-
 local Node = {}
-local NodeMetatable = {
-  __index = Node
-}
+
+Node.__index = Node
 
 -- ---------------------------------------------------------------------
 
-function module.new(data, link)
-  local node = setmetatable({}, NodeMetatable)
+function Node:new(data, link)
+  local node = {
+    data = data,
+    link = link
+  }
 
-  node.data = data
-  node.link = link
-
-  return node
+  return setmetatable(node, self)
 end
 
 -- ---------------------------------------------------------------------
 
-return module
+return Node

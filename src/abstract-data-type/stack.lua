@@ -1,21 +1,18 @@
 -- Stack
 -- ---------------------------------------------------------------------
 
-local module = {}
-
 local Stack = {}
-local StackMetatable = {
-  __index = Stack
-}
+
+Stack.__index = Stack
 
 -- ---------------------------------------------------------------------
 
-function module.new()
-  local stack = setmetatable({}, StackMetatable)
+function Stack:new()
+  local stack = {
+    array = {}
+  }
 
-  stack.array = {}
-
-  return stack
+  return setmetatable(stack, self)
 end
 
 -- ---------------------------------------------------------------------
@@ -36,4 +33,4 @@ end
 
 -- ---------------------------------------------------------------------
 
-return module
+return Stack
