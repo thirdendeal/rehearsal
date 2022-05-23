@@ -1,10 +1,6 @@
 -- Linked List
 -- ---------------------------------------------------------------------
 
-local Node = require("src/data-structure/node")
-
--- ---------------------------------------------------------------------
-
 local LinkedList = {}
 
 LinkedList.__index = LinkedList
@@ -13,6 +9,24 @@ LinkedList.__index = LinkedList
 
 function LinkedList:new()
   return setmetatable({}, self)
+end
+
+-- Node
+-- ---------------------------------------------------------------------
+
+local Node = {}
+
+Node.__index = Node
+
+-- ---------------------------------------------------------------------
+
+function Node:new(data, link)
+  local node = {
+    data = data,
+    link = link
+  }
+
+  return setmetatable(node, self)
 end
 
 -- ---------------------------------------------------------------------
