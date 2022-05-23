@@ -8,7 +8,11 @@ LinkedList.__index = LinkedList
 -- ---------------------------------------------------------------------
 
 function LinkedList:new()
-  return setmetatable({}, self)
+  local linked_list = {
+    head = nil
+  }
+
+  return setmetatable(linked_list, self)
 end
 
 -- Node
@@ -40,7 +44,11 @@ function LinkedList:delete_at(index)
     local previous = self:read(index - 1)
 
     if previous then
-      previous.link = previous.link.link
+      local following = previous.link
+
+      if following then
+        previous.link = following.link
+      end
     end
   end
 end

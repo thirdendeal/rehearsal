@@ -7,12 +7,22 @@ local linked_list = LinkedList:new()
 
 -- ---------------------------------------------------------------------
 
+-- Prepend
+
 linked_list:insert_at(1, 2)
+
 linked_list:insert_at(1, 3)
 linked_list:insert_at(1, 5)
 linked_list:insert_at(1, 7)
 
+-- Append - At the first empty index
+
+linked_list:insert_at(5, 11)
+
+-- Remove
+
 linked_list:delete_at(2)
+linked_list:delete_at(4)
 
 -- ---------------------------------------------------------------------
 
