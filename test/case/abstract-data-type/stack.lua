@@ -5,18 +5,30 @@ local Stack = require("src/abstract-data-type/stack")
 
 local stack = Stack:new()
 
+-- State 1: Empty
 -- ---------------------------------------------------------------------
+
+assert(stack:peek() == nil)
+assert(stack:pop() == nil)
+
+assert(stack:push(1) == 1)
+
+-- State 2: One element
+-- ---------------------------------------------------------------------
+
+assert(stack:peek() == 1)
+assert(stack:pop() == 1)
+
+stack:push(1)
+
+assert(stack:push(2) == 2)
+
+-- State 3: More than one element
+-- ---------------------------------------------------------------------
+
+assert(stack:peek() == 2)
+assert(stack:pop() == 2)
 
 stack:push(2)
-stack:push(3)
-stack:push(5)
-stack:push(7)
 
--- ---------------------------------------------------------------------
-
-assert(stack:peek() == 7)
-
-assert(stack:pop() == 7)
-assert(stack:pop() == 5)
-
-assert(stack:peek() == 3)
+assert(stack:push(3) == 3)
