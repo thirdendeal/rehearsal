@@ -1,34 +1,51 @@
 -- Linked List Test Case
 -- ---------------------------------------------------------------------
 
+local Utility = require("share/utility")
+
+-- ---------------------------------------------------------------------
+
 local LinkedList = require("source/data-structure/linked-list")
 
 local linked_list = LinkedList:new()
 
+-- State 1: Empty
 -- ---------------------------------------------------------------------
 
--- Prepend
+assert(linked_list:delete_at(1) == nil) -- Linked List: (empty)
 
-linked_list:insert_at(1, 2)
+assert(linked_list:read(1) == nil)
+assert(linked_list:search("A") == nil)
 
-linked_list:insert_at(1, 3)
-linked_list:insert_at(1, 5)
-linked_list:insert_at(1, 7)
+linked_list:insert_at(1, "A") -- Linked List: "A"
 
--- Append - At the first empty index
+-- State 2: One element
+-- ---------------------------------------------------------------------
 
-linked_list:insert_at(5, 11)
+assert(linked_list:delete_at(1).data == "A") -- Linked List: (empty)
 
--- Remove
+linked_list:insert_at(1, "B") -- Linked List: "B"
 
-linked_list:delete_at(2)
-linked_list:delete_at(4)
+assert(linked_list:read(1).data == "B")
+assert(linked_list:search("B") == 1)
+
+linked_list:insert_at(1, "C") -- Linked List: "C", "B"
+
+-- State 3: More than one element
+-- ---------------------------------------------------------------------
+
+assert(linked_list:delete_at(2).data == "B") -- Linked List: "C"
+
+linked_list:insert_at(2, "D") -- Linked List: "C", "D"
+
+assert(linked_list:read(2).data == "D")
+assert(linked_list:search("D") == 2)
+
+linked_list:insert_at(2, "E") -- Linked List: "C", "E, "D"
 
 -- ---------------------------------------------------------------------
 
-assert(linked_list:search(3) == 2)
-assert(linked_list:read(2).data == 3)
+local final_state = linked_list:to_array()
+local expected_state = {"C", "E", "D"}
 
-for node in linked_list:traverse() do
-  assert(node.data)
-end
+assert(Utility.equal_ipairs(final_state, expected_state))

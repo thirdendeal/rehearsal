@@ -38,17 +38,25 @@ end
 function LinkedList:delete_at(index)
   if index == 1 then
     if self.head then
-      self.head = self.head.link
+      local removed = self.head
+
+      self.head = removed.link
+
+      return removed
     end
   else
     local previous = self:read(index - 1)
 
     if previous then
-      local following = previous.link
+      local removed = previous.link
 
-      if following then
-        previous.link = following.link
+      if removed then
+        previous.link = removed.link
+      else
+        previous.link = nil
       end
+
+      return removed
     end
   end
 end
@@ -89,10 +97,22 @@ function LinkedList:search(value)
   end
 end
 
-function LinkedList:traverse()
-  local current = {
-    link = self.head
-  }
+function LinkedList:to_array()
+  local array = {}
+
+  for node in self:traverse() do
+    table.insert(array, node.data)
+  end
+
+  return array
+end
+
+function LinkedList:traverse(node)
+  local current =
+    node or
+    {
+      link = self.head
+    }
 
   return function()
     current = current.link
