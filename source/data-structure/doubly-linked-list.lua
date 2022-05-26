@@ -71,15 +71,14 @@ function DoublyLinkedList:delete_at(index, reverse)
 
     if previous then
       previous.forward = following
+    else
+      self.head = following
     end
 
     if following then
       following.backward = previous
-    end
-
-    if not previous and not following then
-      self.head = nil
-      self.tail = nil
+    else
+      self.tail = previous
     end
 
     return replace
