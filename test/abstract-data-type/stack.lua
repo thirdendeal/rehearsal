@@ -1,7 +1,7 @@
 -- Stack Test Case
 -- ---------------------------------------------------------------------
 
-local Stack = require("src/abstract-data-type/stack")
+local Stack = require("source/abstract-data-type/stack")
 
 local stack = Stack:new()
 

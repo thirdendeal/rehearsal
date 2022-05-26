@@ -1,7 +1,7 @@
 -- Doubly Linked List Test Case
 -- ---------------------------------------------------------------------
 
-local DoublyLinkedList = require("src/data-structure/doubly-linked-list")
+local DoublyLinkedList = require("source/data-structure/doubly-linked-list")
 
 local doubly_linked_list = DoublyLinkedList:new()
 
