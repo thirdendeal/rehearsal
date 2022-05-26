@@ -34,4 +34,4 @@ stack:push(5) -- Stack: 2, 4, 5
 
 -- ---------------------------------------------------------------------
 
-assert(equal_ipairs(stack.array, {2, 4, 5}))
+assert(equal_ipairs(stack:to_array(), {2, 4, 5}))

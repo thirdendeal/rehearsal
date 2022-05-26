@@ -25,6 +25,10 @@ function Stack:push(value)
   table.insert(self.array, value)
 end
 
+function Stack:to_array()
+  return self.array
+end
+
 -- ---------------------------------------------------------------------
 
 return Stack
