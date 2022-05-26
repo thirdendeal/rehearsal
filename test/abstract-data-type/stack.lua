@@ -1,6 +1,10 @@
 -- Stack Test Case
 -- ---------------------------------------------------------------------
 
+local Utility = require("share/utility")
+
+-- ---------------------------------------------------------------------
+
 local Stack = require("source/abstract-data-type/stack")
 
 local stack = Stack:new()
@@ -27,3 +31,7 @@ assert(stack:pop() == 3) -- Stack: 2
 
 stack:push(4) -- Stack: 2, 4
 stack:push(5) -- Stack: 2, 4, 5
+
+-- ---------------------------------------------------------------------
+
+assert(Utility.equal_ipairs(stack.array, {2, 4, 5}))
