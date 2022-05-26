@@ -81,6 +81,8 @@ function DoublyLinkedList:delete_at(index, reverse)
       self.head = nil
       self.tail = nil
     end
+
+    return replace
   end
 end
 
