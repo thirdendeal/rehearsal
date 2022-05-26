@@ -1,7 +1,7 @@
 -- Stack Test Case
 -- ---------------------------------------------------------------------
 
-local Utility = require("share/utility")
+local equal_ipairs = require("share/equal_ipairs")
 
 -- ---------------------------------------------------------------------
 
@@ -34,4 +34,4 @@ stack:push(5) -- Stack: 2, 4, 5
 
 -- ---------------------------------------------------------------------
 
-assert(Utility.equal_ipairs(stack.array, {2, 4, 5}))
+assert(equal_ipairs(stack.array, {2, 4, 5}))

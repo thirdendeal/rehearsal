@@ -1,4 +1,4 @@
--- Utility
+-- Equal IPairs
 -- ---------------------------------------------------------------------
 
 local function equal_ipairs(array_a, array_b)
@@ -17,6 +17,4 @@ end
 
 -- ---------------------------------------------------------------------
 
-return {
-  equal_ipairs = equal_ipairs
-}
+return equal_ipairs

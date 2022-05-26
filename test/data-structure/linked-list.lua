@@ -1,7 +1,7 @@
 -- Linked List Test Case
 -- ---------------------------------------------------------------------
 
-local Utility = require("share/utility")
+local equal_ipairs = require("share/equal_ipairs")
 
 -- ---------------------------------------------------------------------
 
@@ -45,7 +45,4 @@ linked_list:insert_at(2, "E") -- Linked List: "C", "E, "D"
 
 -- ---------------------------------------------------------------------
 
-local final_state = linked_list:to_array()
-local expected_state = {"C", "E", "D"}
-
-assert(Utility.equal_ipairs(final_state, expected_state))
+assert(equal_ipairs(linked_list:to_array(), {"C", "E", "D"}))
