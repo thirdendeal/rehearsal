@@ -7,15 +7,11 @@
 local function print_array(array)
   io.write("{")
 
-  for i = 1, #array do
-    io.write(array[i])
-
-    if i ~= #array then
-      io.write(", ")
-    end
+  for i = 1, #array - 1 do
+    io.write(array[i], ", ")
   end
 
-  io.write("}\n")
+  io.write(array[#array], "}\n")
 end
 
 local function printf(...)
