@@ -139,11 +139,23 @@ function DoublyLinkedList:search(value, reverse)
   end
 end
 
-function DoublyLinkedList:traverse(reverse)
-  local current = {
-    backward = self.tail,
-    forward = self.head
-  }
+function DoublyLinkedList:to_array(reverse)
+  local array = {}
+
+  for node in self:traverse(reverse) do
+    table.insert(array, node.data)
+  end
+
+  return array
+end
+
+function DoublyLinkedList:traverse(reverse, node)
+  local current =
+    node or
+    {
+      backward = self.tail,
+      forward = self.head
+    }
 
   local step = reverse and "backward" or "forward"
 

@@ -1,6 +1,10 @@
 -- Queue Test Case
 -- ---------------------------------------------------------------------
 
+local equal_ipairs = require("share/equal_ipairs")
+
+-- ---------------------------------------------------------------------
+
 local Queue = require("source/abstract-data-type/queue")
 
 local queue = Queue:new()
@@ -27,3 +31,7 @@ assert(queue:dequeue() == 2) -- Queue: 3
 
 queue:enqueue(4) -- Queue: 4, 3
 queue:enqueue(5) -- Queue: 5, 4, 3
+
+-- ---------------------------------------------------------------------
+
+assert(equal_ipairs(queue:to_array(), {5, 4, 3}))
