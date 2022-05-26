@@ -17,18 +17,12 @@ end
 
 -- ---------------------------------------------------------------------
 
-function Stack:peek()
-  return self.array[#self.array]
-end
-
 function Stack:pop()
   return table.remove(self.array)
 end
 
 function Stack:push(value)
   table.insert(self.array, value)
-
-  return value
 end
 
 -- ---------------------------------------------------------------------
