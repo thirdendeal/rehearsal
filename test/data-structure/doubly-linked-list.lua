@@ -1,11 +1,11 @@
 -- Doubly Linked List Test Case
 -- ---------------------------------------------------------------------
 
-local equal_ipairs = require("share/equal_ipairs")
+local equal_ipairs = require("share.equal_ipairs")
 
 -- ---------------------------------------------------------------------
 
-local DoublyLinkedList = require("source/data-structure/doubly-linked-list")
+local DoublyLinkedList = require("source.data-structure.doubly-linked-list")
 
 local dll = DoublyLinkedList:new()
 

@@ -1,11 +1,11 @@
 -- Linked List Test Case
 -- ---------------------------------------------------------------------
 
-local equal_ipairs = require("share/equal_ipairs")
+local equal_ipairs = require("share.equal_ipairs")
 
 -- ---------------------------------------------------------------------
 
-local LinkedList = require("source/data-structure/linked-list")
+local LinkedList = require("source.data-structure.linked-list")
 
 local linked_list = LinkedList:new()
 

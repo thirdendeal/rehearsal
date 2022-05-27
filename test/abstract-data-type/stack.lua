@@ -1,11 +1,11 @@
 -- Stack Test Case
 -- ---------------------------------------------------------------------
 
-local equal_ipairs = require("share/equal_ipairs")
+local equal_ipairs = require("share.equal_ipairs")
 
 -- ---------------------------------------------------------------------
 
-local Stack = require("source/abstract-data-type/stack")
+local Stack = require("source.abstract-data-type.stack")
 
 local stack = Stack:new()
 

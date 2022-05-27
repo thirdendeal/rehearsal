@@ -1,11 +1,11 @@
 -- Queue Test Case
 -- ---------------------------------------------------------------------
 
-local equal_ipairs = require("share/equal_ipairs")
+local equal_ipairs = require("share.equal_ipairs")
 
 -- ---------------------------------------------------------------------
 
-local Queue = require("source/abstract-data-type/queue")
+local Queue = require("source.abstract-data-type.queue")
 
 local queue = Queue:new()
 

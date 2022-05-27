@@ -1,7 +1,7 @@
 -- Set
 -- ---------------------------------------------------------------------
 
-local linear_search = require("source/algorithm/linear-search")
+local linear_search = require("source.algorithm.linear-search")
 
 -- ---------------------------------------------------------------------
 
