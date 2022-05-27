@@ -1,18 +1,10 @@
 -- Report
 -- ---------------------------------------------------------------------
 
+local inspect = require("inspect")
+
 -- Private
 -- ---------------------------------------------------------------------
-
-local function print_array(array)
-  io.write("{")
-
-  for i = 1, #array - 1 do
-    io.write(array[i], ", ")
-  end
-
-  io.write(array[#array], "}\n")
-end
 
 local function printf(...)
   io.write(string.format(...))
@@ -39,7 +31,7 @@ end
 local function report(steps, profile, snapshot)
   if steps > 0 and #snapshot > 1 then
     for i = 1, math.min(steps, #snapshot) do
-      print_array(snapshot[i])
+      print(inspect(snapshot[i]))
     end
 
     print()
