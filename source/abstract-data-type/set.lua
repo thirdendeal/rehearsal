@@ -48,6 +48,12 @@ end
 
 -- ---------------------------------------------------------------------
 
+function Set:copy()
+  return Set:new({unpack(self.array)})
+end
+
+-- ---------------------------------------------------------------------
+
 function Set:difference(given_set)
   local copy = self:copy()
 
@@ -71,7 +77,7 @@ function Set:intersection(given_set)
 end
 
 function Set:union(given_set)
-  local copy = Set:new(self.array)
+  local copy = self:copy()
 
   for element in given_set:iterate() do
     copy:add(element)
