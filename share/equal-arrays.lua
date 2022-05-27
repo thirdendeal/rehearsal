@@ -1,8 +1,10 @@
--- Equal IPairs
+-- Equal Arrays
 -- ---------------------------------------------------------------------
 
-local function equal_ipairs(array_a, array_b)
-  if #array_a ~= #array_b then
+local function equal_arrays(array_a, array_b)
+  if array_a == array_b then
+    return true
+  elseif #array_a ~= #array_b then
     return false
   else
     for i = 1, #array_a do
@@ -17,4 +19,4 @@ end
 
 -- ---------------------------------------------------------------------
 
-return equal_ipairs
+return equal_arrays

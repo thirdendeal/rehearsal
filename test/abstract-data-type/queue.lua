@@ -1,7 +1,7 @@
 -- Queue Test Case
 -- ---------------------------------------------------------------------
 
-local equal_ipairs = require("share.equal_ipairs")
+local equal_arrays = require("share.equal-arrays")
 
 -- ---------------------------------------------------------------------
 
@@ -34,4 +34,4 @@ queue:enqueue(5) -- Queue: 5, 4, 3
 
 -- ---------------------------------------------------------------------
 
-assert(equal_ipairs(queue:to_array(), {5, 4, 3}))
+assert(equal_arrays(queue:to_array(), {5, 4, 3}))
