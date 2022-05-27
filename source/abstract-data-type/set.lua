@@ -126,6 +126,16 @@ function Set:is_member(value)
   return self.hash[value] and true or false
 end
 
+function Set:is_subset(given_set)
+  for element in self:iterate() do
+    if not given_set:is_member(element) then
+      return false
+    end
+  end
+
+  return true
+end
+
 function Set:is_superset(given_set)
   for element in given_set:iterate() do
     if not self:is_member(element) then
