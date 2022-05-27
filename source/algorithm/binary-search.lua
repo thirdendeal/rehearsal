@@ -5,11 +5,11 @@
 -- ---------------------------------------------------------------------
 
 local function partiton(array, value, a, b)
-  if a > b then
-    return
-  end
-
   local index = math.floor((a + b) / 2)
+
+  if a > b then
+    return nil, index
+  end
 
   if array[index] == value then
     return index
