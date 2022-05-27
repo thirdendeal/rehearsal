@@ -7,8 +7,6 @@ local linear_search = require("source.algorithm.linear-search")
 
 local Set = {}
 
-Set.__index = Set
-
 -- ---------------------------------------------------------------------
 
 function Set:new(elements)
@@ -108,7 +106,7 @@ end
 
 -- ---------------------------------------------------------------------
 
-function Set:are_equal(given_set)
+function Set:equal(given_set)
   if self:size() ~= given_set:size() then
     return false
   else
@@ -145,6 +143,16 @@ function Set:is_superset(given_set)
 
   return true
 end
+
+-- ---------------------------------------------------------------------
+
+Set.__index = Set
+
+Set.__add = Set.union
+Set.__sub = Set.difference
+
+Set.__pow = Set.intersection
+Set.__eq = Set.equal
 
 -- ---------------------------------------------------------------------
 
