@@ -25,7 +25,7 @@ function Stack:push(value)
   table.insert(self.array, value)
 end
 
-function Stack:to_array()
+function Stack:enumerate()
   return self.array
 end
 

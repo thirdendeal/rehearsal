@@ -45,4 +45,4 @@ dll:insert_at(2, "E") -- Doubly Linked List: "D", "E", "C"
 
 -- ---------------------------------------------------------------------
 
-assert(equal_arrays(dll:to_array(), { "D", "E", "C" }))
+assert(equal_arrays(dll:enumerate(), {"D", "E", "C"}))

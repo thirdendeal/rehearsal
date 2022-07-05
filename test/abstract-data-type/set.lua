@@ -7,7 +7,7 @@ local equal_arrays = require("utility.equal-arrays")
 
 local Set = require("source.abstract-data-type.set")
 
-local set_1 = Set:new({ 1, 2, 3 })
+local set_1 = Set:new({1, 2, 3})
 local set_2 = Set:new()
 
 -- ---------------------------------------------------------------------
@@ -36,4 +36,4 @@ assert(set_2:is_subset(set_1))
 
 -- ---------------------------------------------------------------------
 
-assert(equal_arrays(set_2:enumerate(), { 3 }))
+assert(equal_arrays(set_2:enumerate(), {3}))

@@ -33,8 +33,8 @@ function Queue:enqueue(value)
   self.dll:insert_at(1, value)
 end
 
-function Queue:to_array()
-  return self.dll:to_array()
+function Queue:enumerate()
+  return self.dll:enumerate()
 end
 
 -- ---------------------------------------------------------------------

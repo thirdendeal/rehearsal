@@ -34,4 +34,4 @@ queue:enqueue(5) -- Queue: 5, 4, 3
 
 -- ---------------------------------------------------------------------
 
-assert(equal_arrays(queue:to_array(), { 5, 4, 3 }))
+assert(equal_arrays(queue:enumerate(), {5, 4, 3}))

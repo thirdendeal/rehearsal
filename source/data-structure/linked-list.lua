@@ -97,7 +97,7 @@ function LinkedList:search(value)
   end
 end
 
-function LinkedList:to_array()
+function LinkedList:enumerate()
   local array = {}
 
   for node in self:traverse() do

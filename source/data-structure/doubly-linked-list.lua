@@ -138,7 +138,7 @@ function DoublyLinkedList:search(value, reverse)
   end
 end
 
-function DoublyLinkedList:to_array(reverse)
+function DoublyLinkedList:enumerate(reverse)
   local array = {}
 
   for node in self:traverse(reverse) do

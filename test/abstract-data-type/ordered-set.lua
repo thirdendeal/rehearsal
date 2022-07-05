@@ -7,7 +7,7 @@ local equal_arrays = require("utility.equal-arrays")
 
 local OrderedSet = require("source.abstract-data-type.ordered-set")
 
-local ordered_set_1 = OrderedSet:new({ 1, 2, 3 })
+local ordered_set_1 = OrderedSet:new({1, 2, 3})
 local ordered_set_2 = OrderedSet:new()
 
 -- ---------------------------------------------------------------------
@@ -36,27 +36,17 @@ assert(ordered_set_2:is_subset(ordered_set_1))
 
 -- ---------------------------------------------------------------------
 
-assert(equal_arrays(ordered_set_2:enumerate(), { 3 }))
+assert(equal_arrays(ordered_set_2:enumerate(), {3}))
 
 -- ---------------------------------------------------------------------
 
 local ordered_set_3 = OrderedSet:new()
 
-ordered_set_3:add(10)
-ordered_set_3:add(9)
-ordered_set_3:add(7)
 ordered_set_3:add(4)
-ordered_set_3:add(0)
-
 ordered_set_3:add(1)
-ordered_set_3:add(8)
-ordered_set_3:add(5)
 ordered_set_3:add(3)
 ordered_set_3:add(2)
-ordered_set_3:add(6)
 
 -- ---------------------------------------------------------------------
 
-assert(
-  equal_arrays(ordered_set_3:enumerate(), { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 })
-)
+assert(equal_arrays(ordered_set_3:enumerate(), {1, 2, 3, 4}))

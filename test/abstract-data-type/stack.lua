@@ -34,4 +34,4 @@ stack:push(5) -- Stack: 2, 4, 5
 
 -- ---------------------------------------------------------------------
 
-assert(equal_arrays(stack:to_array(), { 2, 4, 5 }))
+assert(equal_arrays(stack:enumerate(), {2, 4, 5}))

@@ -137,4 +137,4 @@ end
 
 -- ---------------------------------------------------------------------
 
-assert(equal_arrays(breath_first_collect, { 5, 2, 6, 1, 3, 7 }))
+assert(equal_arrays(breath_first_collect, {5, 2, 6, 1, 3, 7}))

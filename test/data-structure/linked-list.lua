@@ -45,4 +45,4 @@ linked_list:insert_at(2, "E") -- Linked List: "C", "E, "D"
 
 -- ---------------------------------------------------------------------
 
-assert(equal_arrays(linked_list:to_array(), { "C", "E", "D" }))
+assert(equal_arrays(linked_list:to_array(), {"C", "E", "D"}))
