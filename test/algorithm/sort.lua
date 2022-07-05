@@ -3,8 +3,8 @@
 --
 -- Usage: lua ./test/algorithm.lua <name> [scenario = worst] [size = 10]
 
-local delete_sufix = require("share.delete-sufix")
-local report = require("share.report")
+local delete_sufix = require("utility.delete-sufix")
+local report = require("utility.report")
 
 -- ---------------------------------------------------------------------
 
@@ -18,7 +18,7 @@ local steps = tonumber(arg[4]) or 0
 local package = require("source.algorithm." .. name)
 local mock = require("mock." .. package.input)
 
-local input = mock[package[scenario]](size)
+local input = mock[ package[scenario] ](size)
 
 -- ---------------------------------------------------------------------
 

@@ -1,7 +1,7 @@
 -- Doubly Linked List Test Case
 -- ---------------------------------------------------------------------
 
-local equal_arrays = require("share.equal-arrays")
+local equal_arrays = require("utility.equal-arrays")
 
 -- ---------------------------------------------------------------------
 
@@ -45,4 +45,4 @@ dll:insert_at(2, "E") -- Doubly Linked List: "D", "E", "C"
 
 -- ---------------------------------------------------------------------
 
-assert(equal_arrays(dll:to_array(), {"D", "E", "C"}))
+assert(equal_arrays(dll:to_array(), { "D", "E", "C" }))
