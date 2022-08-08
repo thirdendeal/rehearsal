@@ -7,8 +7,8 @@ local string_ = require("utility.string")
 local io_ = require("utility.io")
 local source_code = require("utility.source-code")
 
-local profile = require("test.algorithm.sort.profile")
-local report = require("test.algorithm.sort.report")
+local profile = require("script.sort.profile")
+local report = require("script.sort.report")
 
 -- ---------------------------------------------------------------------
 
