@@ -1,7 +1,7 @@
 -- Source Code
 -- ---------------------------------------------------------------------
 
-local MISSING_PAIRS = {
+local OPEN_CLOSE = {
   ["elseif"] = false,
   --
   ["do"] = "end",
@@ -14,40 +14,45 @@ local MISSING_PAIRS = {
 -- ---------------------------------------------------------------------
 
 local function missing(line)
-  for opening, closing in pairs(MISSING_PAIRS) do
+  for opening, closing in pairs(OPEN_CLOSE) do
     if line:match(opening) then
       return closing
     end
   end
 end
 
-local function missing_chunk(stack, line)
-  local closing = missing(line)
+local function pop(stack, line)
+  local top = stack[#stack]
 
-  if closing then
-    table.insert(stack, closing)
-  end
-
-  local latest = stack[#stack]
-
-  if latest then
-    if line:match(latest) then
+  if top then
+    if line:match(top) then
       table.remove(stack)
     end
   end
 end
 
-local function chunker(lines, start_position)
-  start_position = start_position or 1
+local function push(stack, line)
+  local word = missing(line)
 
-  local missing_stack = {}
+  if word then
+    table.insert(stack, word)
+  end
+end
 
-  for position, line in ipairs(lines) do
-    if position >= start_position then
-      missing_chunk(missing_stack, line)
+-- ---------------------------------------------------------------------
 
-      if #missing_stack == 0 then
-        return position
+local function chunk_end(lines, start)
+  start = start or 1
+
+  local stack = {}
+
+  for index, line in ipairs(lines) do
+    if index >= start then
+      push(stack, line)
+      pop(stack, line)
+
+      if #stack == 0 then
+        return index
       end
     end
   end
@@ -55,21 +60,19 @@ end
 
 -- ---------------------------------------------------------------------
 
--- Returns the matched chunk lines
-
-local function extract(pattern, lines)
+local function find_chunk(lines, pattern)
   local i = nil
 
-  for position, line in ipairs(lines) do
+  for index, line in ipairs(lines) do
     if line:match(pattern) then
-      i = position
+      i = index
 
       break
     end
   end
 
   if i then
-    local j = chunker(lines, i)
+    local j = chunk_end(lines, i)
 
     return {unpack(lines, i, j)}
   end
@@ -78,6 +81,6 @@ end
 -- ---------------------------------------------------------------------
 
 return {
-  chunker = chunker,
-  extract = extract
+  chunk_end = chunk_end,
+  find_chunk = find_chunk
 }

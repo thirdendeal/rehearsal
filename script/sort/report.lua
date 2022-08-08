@@ -1,14 +1,12 @@
--- Report
+-- Result
 -- ---------------------------------------------------------------------
 
 local inspect = require("inspect")
 
+local string_ = require("utility.string")
+
 -- Private
 -- ---------------------------------------------------------------------
-
-local function printf(...)
-  io.write(string.format(...))
-end
 
 local function tally(profile)
   local max_length = 0
@@ -42,11 +40,11 @@ local function report(steps, profile, snapshot)
   local format = "%-" .. length .. "s\t%i\n"
 
   for operation, count in pairs(profile) do
-    printf(format, operation, count)
+    string_.printf(format, operation, count)
   end
 
   print()
-  printf(format, "step", sum)
+  string_.printf(format, "step", sum)
 end
 
 -- ---------------------------------------------------------------------

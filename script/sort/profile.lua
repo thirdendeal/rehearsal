@@ -1,4 +1,4 @@
--- Sort Test (v2)
+-- Profile
 -- ---------------------------------------------------------------------
 
 local source_code = require("utility.source-code")
@@ -28,7 +28,7 @@ local function marked_chunks(lines)
 
     if comment and not line:match('%"' .. comment .. '%"') then
       local token = comment:match("%w+"):lower()
-      local chunk_end = source_code.chunker(lines, position) or position
+      local chunk_end = source_code.chunk_end(lines, position) or position
 
       table.insert(entries, {token = token, chunk_end = chunk_end})
     end
