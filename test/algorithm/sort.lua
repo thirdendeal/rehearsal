@@ -1,25 +1,48 @@
--- Algorithm Test
+-- Sort Test
 -- ---------------------------------------------------------------------
 --
--- Usage: lua ./test/algorithm.lua <name> [scenario = worst] [size = 10]
+-- Usage: lua ./test/sort.lua <name> [scenario = worst] [size = 10] [states = 1]
 
 local delete_sufix = require("utility.delete-sufix")
-local report = require("utility.report")
+local readlines = require("utility.readlines")
+local source_code = require("utility.source-code")
+
+local profile = require("test.algorithm.sort.profile")
+local report = require("test.algorithm.sort.report")
 
 -- ---------------------------------------------------------------------
 
-local name = delete_sufix(arg[1], "-sort") .. "-sort"
-local scenario = arg[2] or "worst"
-local size = tonumber(arg[3]) or 10
-local steps = tonumber(arg[4]) or 0
+local function build_profile(name, path)
+  local pattern = name:gsub("-", "_")
+  local lines = readlines(path .. ".lua")
+
+  local chunk_lines = source_code.extract(pattern, lines)
+
+  print(chunk_lines[1])
+
+  return profile(chunk_lines, pattern)
+end
 
 -- ---------------------------------------------------------------------
 
-local package = require("source.algorithm." .. name)
-local mock = require("mock." .. package.input)
-
-local input = mock[ package[scenario] ](size)
+local arguments = {
+  sort = delete_sufix(arg[1], "-sort") .. "-sort",
+  scenario = arg[2] or "worst",
+  size = tonumber(arg[3]) or 10,
+  states = tonumber(arg[4]) or 1
+}
 
 -- ---------------------------------------------------------------------
 
-report(steps, package.algorithm(input))
+local path = "source/algorithm/" .. arguments.sort
+
+local sort = require(path)
+local mock = require("mock/" .. sort.input_type)
+
+local input = mock[sort[arguments.scenario]](arguments.size)
+
+-- ---------------------------------------------------------------------
+
+local profile_sort = build_profile(arguments.sort, path)
+
+report(arguments.states, profile_sort(input))

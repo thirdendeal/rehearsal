@@ -19,32 +19,19 @@
 -- Are in practice reduced to comparisons and swaps only
 
 local function insertion_sort(array)
-  local profile = {
-    comparison = 0,
-    swap = 0
-  }
-
-  local snapshot = {{unpack(array)}}
-
   for i = 2, #array do -- Iteration
     local reference = array[i]
 
     for j = i - 1, 1, -1 do -- Shifting phase
-      profile.comparison = profile.comparison + 1
-
       if array[j] > reference then -- Comparison operation
-        profile.swap = profile.swap + 1
-
         array[j], array[j + 1] = array[j + 1], array[j] -- Swap operation
 
-        table.insert(snapshot, {unpack(array)})
+        -- Snapshot
       else
         break
       end
     end
   end
-
-  return profile, snapshot
 end
 
 -- ---------------------------------------------------------------------
@@ -79,7 +66,7 @@ end
 return {
   algorithm = insertion_sort,
   --
-  input = "array",
+  input_type = "array",
   --
   worst = "descending",
   average = "pseudo_random",

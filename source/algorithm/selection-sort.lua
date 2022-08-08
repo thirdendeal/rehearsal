@@ -11,13 +11,6 @@
 -- 1. Either one or zero swaps occur
 
 local function selection_sort(array)
-  local profile = {
-    comparison = 0,
-    swap = 0
-  }
-
-  local snapshot = {{unpack(array)}}
-
   for i = 1, #array - 1 do -- Iteration
     local lowest = i
 
@@ -25,19 +18,14 @@ local function selection_sort(array)
       if array[j] < array[lowest] then -- Comparison operation
         lowest = j
       end
-
-      profile.comparison = profile.comparison + 1
     end
 
     if lowest ~= i then
       array[i], array[lowest] = array[lowest], array[i] -- Swap operation
 
-      profile.swap = profile.swap + 1
-      table.insert(snapshot, {unpack(array)})
+      -- Snapshot
     end
   end
-
-  return profile, snapshot
 end
 
 -- ---------------------------------------------------------------------
@@ -86,7 +74,7 @@ end
 return {
   algorithm = selection_sort,
   --
-  input = "array",
+  input_type = "array",
   --
   worst = "descending",
   average = "pseudo_random",

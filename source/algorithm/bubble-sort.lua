@@ -14,13 +14,6 @@
 -- 2. The greatest unsorted value bubbles up to its correct position
 
 local function bubble_sort(array)
-  local profile = {
-    comparison = 0,
-    swap = 0
-  }
-
-  local snapshot = {{unpack(array)}}
-
   for i = 1, #array - 1 do -- Iteration
     local sorted = true
 
@@ -28,22 +21,16 @@ local function bubble_sort(array)
       if array[j] > array[j + 1] then -- Comparison operation
         array[j], array[j + 1] = array[j + 1], array[j] -- Swap operation
 
+        -- Snapshot
+
         sorted = false
-
-        profile.swap = profile.swap + 1
-
-        table.insert(snapshot, {unpack(array)})
       end
-
-      profile.comparison = profile.comparison + 1
     end
 
     if sorted then
       break
     end
   end
-
-  return profile, snapshot
 end
 
 -- ---------------------------------------------------------------------
@@ -78,7 +65,7 @@ end
 return {
   algorithm = bubble_sort,
   --
-  input = "array",
+  input_type = "array",
   --
   worst = "descending",
   average = "pseudo_random",
