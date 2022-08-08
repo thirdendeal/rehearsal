@@ -1,7 +1,7 @@
 -- Stack Test Case
 -- ---------------------------------------------------------------------
 
-local equal_arrays = require("utility.equal-arrays")
+local array = require("utility.array")
 
 -- ---------------------------------------------------------------------
 
@@ -34,4 +34,4 @@ stack:push(5) -- Stack: 2, 4, 5
 
 -- ---------------------------------------------------------------------
 
-assert(equal_arrays(stack:enumerate(), {2, 4, 5}))
+assert(array.equals(stack:enumerate(), {2, 4, 5}))

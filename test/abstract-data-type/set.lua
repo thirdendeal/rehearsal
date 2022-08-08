@@ -1,7 +1,7 @@
 -- Set Test Case
 -- ---------------------------------------------------------------------
 
-local equal_arrays = require("utility.equal-arrays")
+local array = require("utility.array")
 
 -- ---------------------------------------------------------------------
 
@@ -36,4 +36,4 @@ assert(set_2:is_subset(set_1))
 
 -- ---------------------------------------------------------------------
 
-assert(equal_arrays(set_2:enumerate(), {3}))
+assert(array.equals(set_2:enumerate(), {3}))

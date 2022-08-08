@@ -1,7 +1,7 @@
 -- Binary Search Tree
 -- ---------------------------------------------------------------------
 
-local equal_arrays = require("utility.equal-arrays")
+local array = require("utility.array")
 
 -- ---------------------------------------------------------------------
 
@@ -137,4 +137,4 @@ end
 
 -- ---------------------------------------------------------------------
 
-assert(equal_arrays(breath_first_collect, {5, 2, 6, 1, 3, 7}))
+assert(array.equals(breath_first_collect, {5, 2, 6, 1, 3, 7}))

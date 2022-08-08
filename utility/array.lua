@@ -1,7 +1,7 @@
--- Equal Arrays
+-- Array
 -- ---------------------------------------------------------------------
 
-local function equal_arrays(array_a, array_b)
+local function equals(array_a, array_b)
   if array_a == array_b then
     return true
   elseif #array_a ~= #array_b then
@@ -19,4 +19,6 @@ end
 
 -- ---------------------------------------------------------------------
 
-return equal_arrays
+return {
+  equals = equals
+}

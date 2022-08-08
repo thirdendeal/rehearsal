@@ -1,4 +1,4 @@
--- Delete Sufix
+-- String
 -- ---------------------------------------------------------------------
 
 local function delete_sufix(string, sufix)
@@ -7,4 +7,6 @@ end
 
 -- ---------------------------------------------------------------------
 
-return delete_sufix
+return {
+  delete_sufix = delete_sufix
+}

@@ -3,8 +3,8 @@
 --
 -- Usage: lua ./test/sort.lua <name> [scenario = worst] [size = 10] [states = 1]
 
-local delete_sufix = require("utility.delete-sufix")
-local readlines = require("utility.readlines")
+local string_ = require("utility.string")
+local io_ = require("utility.io")
 local source_code = require("utility.source-code")
 
 local profile = require("test.algorithm.sort.profile")
@@ -14,7 +14,7 @@ local report = require("test.algorithm.sort.report")
 
 local function build_profile(name, path)
   local pattern = name:gsub("-", "_")
-  local lines = readlines(path .. ".lua")
+  local lines = io_.readlines(path .. ".lua")
 
   local chunk_lines = source_code.extract(pattern, lines)
 
@@ -26,7 +26,7 @@ end
 -- ---------------------------------------------------------------------
 
 local arguments = {
-  sort = delete_sufix(arg[1], "-sort") .. "-sort",
+  sort = string_.delete_sufix(arg[1], "-sort") .. "-sort",
   scenario = arg[2] or "worst",
   size = tonumber(arg[3]) or 10,
   states = tonumber(arg[4]) or 1

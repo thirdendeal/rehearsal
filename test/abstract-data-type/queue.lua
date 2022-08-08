@@ -1,7 +1,7 @@
 -- Queue Test Case
 -- ---------------------------------------------------------------------
 
-local equal_arrays = require("utility.equal-arrays")
+local array = require("utility.array")
 
 -- ---------------------------------------------------------------------
 
@@ -34,4 +34,4 @@ queue:enqueue(5) -- Queue: 5, 4, 3
 
 -- ---------------------------------------------------------------------
 
-assert(equal_arrays(queue:enumerate(), {5, 4, 3}))
+assert(array.equals(queue:enumerate(), {5, 4, 3}))

@@ -1,4 +1,4 @@
--- Read Lines
+-- I/O
 -- ---------------------------------------------------------------------
 
 local function readlines(filename)
@@ -13,4 +13,6 @@ end
 
 -- ---------------------------------------------------------------------
 
-return readlines
+return {
+  readlines = readlines
+}
