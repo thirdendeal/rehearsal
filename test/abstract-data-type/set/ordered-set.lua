@@ -5,7 +5,7 @@ local equal_arrays = require("utility.equal-arrays")
 
 -- ---------------------------------------------------------------------
 
-local OrderedSet = require("source.abstract-data-type.ordered-set")
+local OrderedSet = require("source.abstract-data-type.set.ordered-set")
 
 local ordered_set_1 = OrderedSet:new({1, 2, 3})
 local ordered_set_2 = OrderedSet:new()

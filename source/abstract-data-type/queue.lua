@@ -1,7 +1,8 @@
 -- Queue
 -- ---------------------------------------------------------------------
 
-local DoublyLinkedList = require("source.data-structure.doubly-linked-list")
+local DoublyLinkedList =
+  require("source.data-structure.linked-list.doubly-linked-list")
 
 -- ---------------------------------------------------------------------
 

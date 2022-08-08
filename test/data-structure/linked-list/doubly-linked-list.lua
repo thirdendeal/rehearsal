@@ -5,7 +5,8 @@ local equal_arrays = require("utility.equal-arrays")
 
 -- ---------------------------------------------------------------------
 
-local DoublyLinkedList = require("source.data-structure.doubly-linked-list")
+local DoublyLinkedList =
+  require("source.data-structure.linked-list.doubly-linked-list")
 
 local dll = DoublyLinkedList:new()
 
