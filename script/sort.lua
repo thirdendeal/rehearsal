@@ -18,8 +18,6 @@ local function build_profile(name, path)
 
   local chunk_lines = source_code.extract(pattern, lines)
 
-  print(chunk_lines[1])
-
   return profile(chunk_lines, pattern)
 end
 
