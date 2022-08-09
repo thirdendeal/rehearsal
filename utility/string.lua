@@ -38,6 +38,14 @@ local function tokenize(string)
   return string:lower()
 end
 
+local function untokenize(string)
+  local capital = string:match("."):upper()
+
+  string = string:gsub("_", " ")
+
+  return string:gsub("^.", capital)
+end
+
 -- ---------------------------------------------------------------------
 
 return {
@@ -47,5 +55,6 @@ return {
   printf = printf,
   rstrip = rstrip,
   strip = strip,
-  tokenize = tokenize
+  tokenize = tokenize,
+  untokenize = untokenize
 }

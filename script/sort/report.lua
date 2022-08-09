@@ -7,40 +7,87 @@ local string_ = require("utility.string")
 
 -- ---------------------------------------------------------------------
 
-local function tally(profile)
-  local max_length = 0
-  local sum = 0
+local function sorted_keys(pairs_table)
+  local keys = {}
 
-  for key, value in pairs(profile) do
-    if #key > max_length then
-      max_length = #key
-    end
-
-    sum = sum + value
+  for key, _ in pairs(pairs_table) do
+    table.insert(keys, key)
   end
 
-  return max_length, sum
+  table.sort(keys)
+
+  return keys
 end
 
-local function report(steps, profile, snapshot)
-  if steps > 0 and #snapshot > 1 then
-    for i = 1, math.min(steps, #snapshot) do
-      print(inspect(snapshot[i]))
+local function ordered_pairs(pairs_table)
+  local keys = sorted_keys(pairs_table)
+
+  local index = 1
+
+  return function()
+    local key = keys[index]
+
+    if key then
+      index = index + 1
+
+      return key, pairs_table[key]
+    end
+  end
+end
+
+-- ---------------------------------------------------------------------
+
+local function skim(tally)
+  local max_length = 0
+  local total = 0
+
+  for name, count in pairs(tally) do
+    if #name > max_length then
+      max_length = #name
     end
 
+    if name:match("_operation$") then
+      total = total + count
+    end
+  end
+
+  return max_length, total
+end
+
+-- ---------------------------------------------------------------------
+
+local function snapshots(states, snapshot)
+  local maximum = math.min(states, #snapshot)
+
+  for i = 1, maximum do
+    print(inspect(snapshot[i]))
+  end
+
+  if maximum > 0 then
     print()
   end
+end
 
-  local length, sum = tally(profile)
+local function summary(tally)
+  local length, total = skim(tally)
 
-  local format = "%-" .. length .. "s\t%i\n"
+  local format = "%-" .. length .. "s    %i\n"
 
-  for operation, count in pairs(profile) do
-    string_.printf(format, operation, count)
+  for name, count in ordered_pairs(tally) do
+    string_.printf(format, string_.untokenize(name), count)
   end
 
-  print()
-  string_.printf(format, "step", sum)
+  if total > 0 then
+    print()
+
+    string_.printf(format, "Operation total", total)
+  end
+end
+-- ---------------------------------------------------------------------
+
+local function report(states, tally, snapshot)
+  snapshots(states, snapshot)
+  summary(tally)
 end
 
 -- ---------------------------------------------------------------------
