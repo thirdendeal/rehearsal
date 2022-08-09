@@ -22,8 +22,6 @@ local function selection_sort(array)
 
     if lowest ~= i then
       array[i], array[lowest] = array[lowest], array[i] -- Swap operation
-
-      -- Snapshot
     end
   end
 end

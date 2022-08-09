@@ -1,11 +1,10 @@
--- Result
+-- Report
 -- ---------------------------------------------------------------------
 
 local inspect = require("inspect")
 
 local string_ = require("utility.string")
 
--- Private
 -- ---------------------------------------------------------------------
 
 local function tally(profile)
@@ -22,9 +21,6 @@ local function tally(profile)
 
   return max_length, sum
 end
-
--- Public
--- ---------------------------------------------------------------------
 
 local function report(steps, profile, snapshot)
   if steps > 0 and #snapshot > 1 then

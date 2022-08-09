@@ -1,25 +1,12 @@
--- Sort Test
+-- Sort
 -- ---------------------------------------------------------------------
 --
 -- Usage: lua ./script/sort.lua <name> [scenario = worst] [size = 10] [states = 1]
 
-local io_ = require("utility.io")
-local source_code = require("utility.source-code")
 local string_ = require("utility.string")
 
 local profile = require("script.sort.profile")
 local report = require("script.sort.report")
-
--- ---------------------------------------------------------------------
-
-local function build_profile(name, path)
-  local pattern = name:gsub("-", "_")
-  local lines = io_.readlines(string_.ending(path, ".lua"))
-
-  local chunk = source_code.find_chunk(lines, pattern)
-
-  return profile(chunk, pattern)
-end
 
 -- ---------------------------------------------------------------------
 
@@ -40,7 +27,10 @@ local mock = require("mock/" .. sort.input_type)
 
 -- ---------------------------------------------------------------------
 
-local profile_func = build_profile(arguments.name, path)
+local function_name = arguments.name:gsub("-", "_")
+local function_path = path .. ".lua"
+
+local new_function = profile(function_name, function_path)
 local input = mock[sort[arguments.scenario]](arguments.size)
 
-report(arguments.states, profile_func(input))
+report(arguments.states, new_function(input))

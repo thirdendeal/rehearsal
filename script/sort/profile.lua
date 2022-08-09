@@ -1,108 +1,119 @@
 -- Profile
 -- ---------------------------------------------------------------------
 
-local source_code = require("utility.source-code")
+local code = require("utility.code")
+local io_ = require("utility.io")
+local string_ = require("utility.string")
 
 -- ---------------------------------------------------------------------
 
-local HEADER = [[
-  local snapshot = {{unpack(array)}}
-  local tally = {}
-]]
-
-local TALLY_FORMAT = "tally.%s = 0"
-local COUNT_FORMAT = "tally.%s = tally.%s + 1"
-
-local SNAPSHOT = "table.insert(snapshot, {unpack(array)})"
-
--- TODO
-local FOOTER = "return tally, snapshot"
+local INSERT = {
+  HEADER = [[
+    local snapshot = {{unpack(array)}}
+    local tally = {}
+  ]],
+  TALLY = "tally.%s = 0",
+  COUNT = "tally.%s = tally.%s + 1",
+  SNAPSHOT = "table.insert(snapshot, {unpack(array)})",
+  FOOTER = "return tally, snapshot",
+  RETURN = "return %s"
+}
 
 -- ---------------------------------------------------------------------
 
-local function marked_chunks(lines)
-  local entries = {}
+local function tokenize(comment, chunk, index)
+  return {
+    name = string_.tokenize(comment),
+    chunk_end = code.chunk_end(chunk, index)
+  }
+end
 
-  for position, line in ipairs(lines) do
-    local comment = line:match("%-%-.*")
+local function find_tokens(chunk)
+  local tokens = {}
+
+  for index, line in ipairs(chunk) do
+    local comment = line:match("%-%-(.*)")
 
     if comment and not line:match('%"' .. comment .. '%"') then
-      local token = comment:match("%w+"):lower()
-      local chunk_end = source_code.chunk_end(lines, position) or position
-
-      table.insert(entries, {token = token, chunk_end = chunk_end})
+      table.insert(tokens, tokenize(comment, chunk, index))
     end
   end
 
   table.sort(
-    entries,
+    tokens,
     function(a, b)
       return a.chunk_end < b.chunk_end
     end
   )
 
-  return entries
+  return tokens
 end
 
 -- ---------------------------------------------------------------------
 
-local function insert_header(lines, insertions)
+local function header(lines, tokens)
   local offset = 2
 
-  for line in HEADER:gmatch("(.-)\n") do
+  for line in INSERT.HEADER:gmatch("(.-)\n") do
     table.insert(lines, offset, line)
 
     offset = offset + 1
   end
 
-  for _, insertion in ipairs(insertions) do
-    if insertion.token ~= "snapshot" then
-      local line = string.format(TALLY_FORMAT, insertion.token)
+  for _, token in ipairs(tokens) do
+    table.insert(lines, offset, string.format(INSERT.TALLY, token.name))
 
-      table.insert(lines, offset, line)
+    offset = offset + 1
+  end
+end
 
-      offset = offset + 1
+local function count(lines, token, offset)
+  table.insert(
+    lines,
+    token.chunk_end + offset,
+    string.format(INSERT.COUNT, token.name, token.name)
+  )
+end
+
+local function snapshot(lines, tokens)
+  for i = #tokens, 1, -1 do
+    local token = tokens[i]
+
+    if token.name:match("_operation$") then
+      table.insert(lines, token.chunk_end + 2, INSERT.SNAPSHOT)
     end
   end
 end
 
-local function insert_count(lines, offset, insertion)
-  local line = string.format(COUNT_FORMAT, insertion.token, insertion.token)
-  local position = insertion.chunk_end + offset
-
-  table.insert(lines, position, line)
-end
-
-local function insert_footer(lines, name)
-  table.insert(lines, #lines, FOOTER)
-  table.insert(lines, "return " .. name)
+local function footer(lines, function_name)
+  table.insert(lines, #lines, INSERT.FOOTER)
+  table.insert(lines, string.format(INSERT.RETURN, function_name))
 end
 
 -- ---------------------------------------------------------------------
 
-local function profile_lines(lines, name)
-  local map = marked_chunks(lines)
+local function insert_profiler(lines, function_name)
+  local tokens = find_tokens(lines)
 
-  for offset, insertion in ipairs(map) do
-    if insertion.token == "snapshot" then
-      table.insert(lines, insertion.chunk_end + offset, SNAPSHOT)
-    else
-      insert_count(lines, offset, insertion)
-    end
+  for offset, token in ipairs(tokens) do
+    count(lines, token, offset)
   end
 
-  insert_header(lines, map)
-  insert_footer(lines, name)
+  snapshot(lines, tokens)
 
-  return lines
+  header(lines, tokens)
+  footer(lines, function_name)
 end
 
 -- ---------------------------------------------------------------------
 
-local function profile(lines, name)
-  local function_lines = table.concat(profile_lines(lines, name), "\n")
+local function profile(pattern, path)
+  local file = io_.readlines(path)
+  local func = code.find_chunk(file, pattern)
 
-  return loadstring(function_lines)()
+  insert_profiler(func, pattern)
+
+  return loadstring(table.concat(func, "\n"))()
 end
 
 -- ---------------------------------------------------------------------

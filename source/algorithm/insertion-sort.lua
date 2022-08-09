@@ -25,8 +25,6 @@ local function insertion_sort(array)
     for j = i - 1, 1, -1 do -- Shifting phase
       if array[j] > reference then -- Comparison operation
         array[j], array[j + 1] = array[j + 1], array[j] -- Swap operation
-
-        -- Snapshot
       else
         break
       end
