@@ -68,6 +68,10 @@ local function header(lines, tokens)
 end
 
 local function count(lines, token, offset)
+  if token.name == "iteration" then
+    offset = offset - 1
+  end
+
   table.insert(
     lines,
     token.chunk_end + offset,
