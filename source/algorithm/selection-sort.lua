@@ -69,12 +69,4 @@ end
 
 -- ---------------------------------------------------------------------
 
-return {
-  algorithm = selection_sort,
-  --
-  input_type = "array",
-  --
-  worst = "descending",
-  average = "pseudo_random",
-  best = "ascending"
-}
+return selection_sort

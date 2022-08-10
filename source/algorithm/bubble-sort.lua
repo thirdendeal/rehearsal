@@ -60,12 +60,4 @@ end
 
 -- ---------------------------------------------------------------------
 
-return {
-  algorithm = bubble_sort,
-  --
-  input_type = "array",
-  --
-  worst = "descending",
-  average = "pseudo_random",
-  best = "ascending"
-}
+return bubble_sort
