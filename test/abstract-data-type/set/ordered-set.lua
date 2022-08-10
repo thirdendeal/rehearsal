@@ -1,7 +1,7 @@
 -- Ordered Set Test Case
 -- ---------------------------------------------------------------------
 
-local array = require("utility.array")
+local UtilityArray = require("utility.array")
 
 -- ---------------------------------------------------------------------
 
@@ -36,7 +36,7 @@ assert(ordered_set_2:is_subset(ordered_set_1))
 
 -- ---------------------------------------------------------------------
 
-assert(array.equals(ordered_set_2:enumerate(), {3}))
+assert(UtilityArray.equals(ordered_set_2:enumerate(), {3}))
 
 -- ---------------------------------------------------------------------
 
@@ -49,4 +49,4 @@ ordered_set_3:add(2)
 
 -- ---------------------------------------------------------------------
 
-assert(array.equals(ordered_set_3:enumerate(), {1, 2, 3, 4}))
+assert(UtilityArray.equals(ordered_set_3:enumerate(), {1, 2, 3, 4}))

@@ -3,7 +3,7 @@
 
 local inspect = require("inspect")
 
-local string_ = require("utility.string")
+local UtilityString = require("utility.string")
 
 -- ---------------------------------------------------------------------
 
@@ -74,13 +74,13 @@ local function summary(tally)
   local format = "%-" .. length .. "s    %i\n"
 
   for name, count in ordered_pairs(tally) do
-    string_.printf(format, string_.untokenize(name), count)
+    UtilityString.printf(format, UtilityString.untokenize(name), count)
   end
 
   if total > 0 then
     print()
 
-    string_.printf(format, "Operation total", total)
+    UtilityString.printf(format, "Operation total", total)
   end
 end
 -- ---------------------------------------------------------------------

@@ -1,9 +1,9 @@
 -- Profile
 -- ---------------------------------------------------------------------
 
-local code = require("utility.code")
-local io_ = require("utility.io")
-local string_ = require("utility.string")
+local UtilityCode = require("utility.code")
+local UtilityIO = require("utility.io")
+local UtilityString = require("utility.string")
 
 -- ---------------------------------------------------------------------
 
@@ -23,8 +23,8 @@ local INSERT = {
 
 local function tokenize(comment, chunk, index)
   return {
-    name = string_.tokenize(comment),
-    chunk_end = code.chunk_end(chunk, index)
+    name = UtilityString.tokenize(comment),
+    chunk_end = UtilityCode.chunk_end(chunk, index)
   }
 end
 
@@ -112,8 +112,8 @@ end
 -- ---------------------------------------------------------------------
 
 local function profile(pattern, path)
-  local file = io_.readlines(path)
-  local func = code.find_chunk(file, pattern)
+  local file = UtilityIO.readlines(path)
+  local func = UtilityCode.find_chunk(file, pattern)
 
   insert_profiler(func, pattern)
 

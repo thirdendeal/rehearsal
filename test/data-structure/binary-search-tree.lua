@@ -1,7 +1,7 @@
 -- Binary Search Tree
 -- ---------------------------------------------------------------------
 
-local array = require("utility.array")
+local UtilityArray = require("utility.array")
 
 -- ---------------------------------------------------------------------
 
@@ -129,12 +129,12 @@ bst:remove(13)
 
 -- ---------------------------------------------------------------------
 
-local breath_first_collect = {}
+local path = {}
 
 for node in bst:traverse(true) do
-  table.insert(breath_first_collect, node.value)
+  table.insert(path, node.value)
 end
 
 -- ---------------------------------------------------------------------
 
-assert(array.equals(breath_first_collect, {5, 2, 6, 1, 3, 7}))
+assert(UtilityArray.equals(path, {5, 2, 6, 1, 3, 7}))

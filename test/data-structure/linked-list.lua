@@ -1,7 +1,7 @@
 -- Linked List Test Case
 -- ---------------------------------------------------------------------
 
-local array = require("utility.array")
+local UtilityArray = require("utility.array")
 
 -- ---------------------------------------------------------------------
 
@@ -45,4 +45,4 @@ linked_list:insert_at(2, "E") -- Linked List: "C", "E, "D"
 
 -- ---------------------------------------------------------------------
 
-assert(array.equals(linked_list:enumerate(), {"C", "E", "D"}))
+assert(UtilityArray.equals(linked_list:enumerate(), {"C", "E", "D"}))

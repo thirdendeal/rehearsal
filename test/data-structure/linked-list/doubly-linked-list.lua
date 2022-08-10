@@ -1,7 +1,7 @@
 -- Doubly Linked List Test Case
 -- ---------------------------------------------------------------------
 
-local array = require("utility.array")
+local UtilityArray = require("utility.array")
 
 -- ---------------------------------------------------------------------
 
@@ -46,4 +46,4 @@ dll:insert_at(2, "E") -- Doubly Linked List: "D", "E", "C"
 
 -- ---------------------------------------------------------------------
 
-assert(array.equals(dll:enumerate(), {"D", "E", "C"}))
+assert(UtilityArray.equals(dll:enumerate(), {"D", "E", "C"}))
