@@ -1,4 +1,4 @@
--- Binary Search Tree
+-- Binary Search Tree Test Case
 -- ---------------------------------------------------------------------
 
 local UtilityArray = require("utility.array")
@@ -9,6 +9,7 @@ local BinarySearchTree = require("source.data-structure.binary-search-tree")
 
 local bst = BinarySearchTree:new()
 
+-- Stage 1: Construction
 -- ---------------------------------------------------------------------
 
 bst:add(8)
@@ -44,6 +45,7 @@ bst:add(15)
 --    2       6         10        14
 -- 1    3   5   7     9   11    13  15
 
+-- Stage 2: Deconstruction
 -- ---------------------------------------------------------------------
 
 bst:remove(15)
@@ -127,6 +129,7 @@ bst:remove(13)
 --    2       6
 -- 1    3       7
 
+-- Stage 3: Traversal
 -- ---------------------------------------------------------------------
 
 local path = {}

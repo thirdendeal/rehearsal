@@ -1,4 +1,4 @@
--- Ordered OrderedSet
+-- Ordered Set
 -- ---------------------------------------------------------------------
 
 local binary_search = require("source.algorithm.binary-search")

@@ -11,6 +11,7 @@ local OPEN_CLOSE = {
   ["repeat"] = "until"
 }
 
+-- Private
 -- ---------------------------------------------------------------------
 
 local function missing(line)
@@ -39,6 +40,7 @@ local function push(stack, line)
   end
 end
 
+-- Public
 -- ---------------------------------------------------------------------
 
 local function chunk_end(lines, start)
