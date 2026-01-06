@@ -1,7 +1,7 @@
 -- Sort
 -- ---------------------------------------------------------------------
 --
--- Usage: lua ./script/sort.lua <name> [scenario = worst] [size = 10] [states = 1]
+-- # Usage: lua script/sort.lua <name> [scenario = worst] [size = 10] [snapshots = 1]
 
 local MockArray = require("mock.array")
 local UtilityString = require("utility.string")
@@ -16,7 +16,7 @@ local arguments = {
   --
   scenario = arg[2] or "worst",
   size = tonumber(arg[3]) or 10,
-  states = tonumber(arg[4]) or 1
+  snapshots = tonumber(arg[4]) or 1
 }
 
 local map = {
@@ -37,4 +37,4 @@ local function_path = path .. ".lua"
 local new_function = profile(function_name, function_path)
 local input = MockArray[map[arguments.scenario]](arguments.size)
 
-report(arguments.states, new_function(input))
+report(arguments.snapshots, new_function(input))
